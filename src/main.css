@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+}
+
+.fields {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+.field {
+    display: inline-block;
+    background-color: white;
+    margin: 1px;
+    width: 48px;
+    height: 48px;
+}
