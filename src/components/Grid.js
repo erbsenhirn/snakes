@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { REFRESH_GRID } from '../constants/action-types'
  
 
-import Field from './Field';
+import Cell from './Cell';
 
 const mapStateToProps = state => {
   return { grid: state.grid };
 };
 
-const ConnectedGame = ({ grid, dispatch }) => {
+const ConnectedGrid = ({ grid, dispatch }) => {
   useEffect(() => {
     setInterval(function(){ 
       dispatch({ type: REFRESH_GRID });
@@ -17,15 +17,15 @@ const ConnectedGame = ({ grid, dispatch }) => {
   }, []);
   
   return (
-  <div class="fields">
+  <div class="grid">
     { grid.cells.map(row => (
       row.map(cell => (
-        <Field y={ cell.y } x={ cell.x } />
+        <Cell y={ cell.y } x={ cell.x } />
       ))
     ))}
   </div>
   )
 }
 
-const Game = connect(mapStateToProps)(ConnectedGame);
-export default Game;
+const Grid = connect(mapStateToProps)(ConnectedGrid);
+export default Grid;

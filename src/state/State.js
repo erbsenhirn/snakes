@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 import Grid from './Grid';
 import Snake from './Snake';
-import { REFRESH_GRID } from './constants/action-types';
+import { REFRESH_GRID } from '../constants/action-types';
 
 const initialState = {
   snakes: new Array(new Snake()),

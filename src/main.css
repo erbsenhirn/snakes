@@ -2,13 +2,13 @@ body {
     background-color: black;
 }
 
-.fields {
+.grid {
     width: 500px;
     height: 500px;
     margin: auto;
 }
 
-.field {
+.cell {
     display: inline-block;
     background-color: white;
     margin: 1px;

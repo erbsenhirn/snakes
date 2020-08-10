@@ -1,3 +1,5 @@
+import Cell from './Cell'
+
 class Grid {
   constructor(width=10, height=10) {
     this.width = width
@@ -13,14 +15,6 @@ class Grid {
             this.cells[y][x] = new Cell(y, x);
         } 
     } 
-  }
-}
-
-class Cell {
-  constructor(y, x, color = 'white') {
-    this.y = y;
-    this.x = x;
-    this.color = color;
   }
 }
 
