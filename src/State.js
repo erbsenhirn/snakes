@@ -18,15 +18,28 @@ function rootReducer(state = initialState, action) {
   
   switch (action.type) {
     case REFRESH_GRID:
+      
+      let snakes = new Array();
+      for (let snake of state.snakes) {
+        snake.move();
+        snakes.push(snake)
+      }
+
       let grid = Object.assign({}, state.grid);
       
-      for(let snake of state.snakes) {
-        for(let part of snake.parts) {
-          grid.cells[part.x][part.y].color = "red";
+      for(let y = 0; y < state.grid.height; y++ ) {
+        for(let x = 0; x < state.grid.width; x++ ) {
+          grid.cells[y][x].color = "white";
         }
       }
       
-      return { ...state, grid: grid };
+      for(let snake of state.snakes) {
+        for(let part of snake.parts) {
+          grid.cells[part.y][part.x].color = "red";
+        }
+      }
+      
+      return { ...state, snakes: snakes, grid: grid };
     default:
       return state;
   }

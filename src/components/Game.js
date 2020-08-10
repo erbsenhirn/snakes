@@ -13,7 +13,7 @@ const ConnectedGame = ({ grid, dispatch }) => {
   useEffect(() => {
     setInterval(function(){ 
       dispatch({ type: REFRESH_GRID });
-    }, 100);
+    }, 500);
   }, []);
   
   return (
