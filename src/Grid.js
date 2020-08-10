@@ -10,16 +10,16 @@ class Grid {
     
     for (var y = 0; y < height; y++) {
         for (var x = 0; x < width; x++) {
-            this.cells[x][y] = new Cell(x, y);
+            this.cells[y][x] = new Cell(y, x);
         } 
     } 
   }
 }
 
 class Cell {
-  constructor(x, y, color = 'white') {
-    this.x = x;
+  constructor(y, x, color = 'white') {
     this.y = y;
+    this.x = x;
     this.color = color;
   }
 }

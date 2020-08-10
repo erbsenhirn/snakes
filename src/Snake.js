@@ -19,9 +19,9 @@ class Snake {
 }
 
 class SnakePart {
-  constructor(x, y) {
-    this.x = x;
+  constructor(y, x) {
     this.y = y;
+    this.x = x;
   }
 }
 

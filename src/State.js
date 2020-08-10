@@ -1,20 +1,36 @@
 import { createStore } from "redux";
-import Grid from './Grid'
-import Snake from './Snake'
+import Grid from './Grid';
+import Snake from './Snake';
+import { REFRESH_GRID } from './constants/action-types';
 
 const initialState = {
   snakes: new Array(new Snake()),
-  grid: new Grid()
+  grid: new Grid(),
 };
 
-export function addArticle(payload) {
-  return { type: "ADD_ARTICLE", payload }
-};
+
+export function updateGrid() {
+  return { type: REFRESH_GRID };
+}
 
 
 function rootReducer(state = initialState, action) {
-  return state;
-};
+  
+  switch (action.type) {
+    case REFRESH_GRID:
+      let grid = Object.assign({}, state.grid);
+      
+      for(let snake of state.snakes) {
+        for(let part of snake.parts) {
+          grid.cells[part.x][part.y].color = "red";
+        }
+      }
+      
+      return { ...state, grid: grid };
+    default:
+      return state;
+  }
+}
 
 
 
