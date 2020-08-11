@@ -16,6 +16,10 @@ class Grid {
         } 
     } 
   }
+  
+  getCell(y, x) {
+    return this.cells[y][x]; 
+  }
 }
 
 export default Grid;

@@ -1,1 +1,2 @@
-export const REFRESH_GRID = "REFRESH_GRID";
+export const REFRESH_GRID = 'REFRESH_GRID';
+export const CELL_CLICKED = 'CELL_CLICKED';

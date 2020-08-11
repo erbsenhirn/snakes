@@ -1,5 +1,5 @@
 class Cell {
-  constructor(y, x, color = 'white', content = 'empty') {
+  constructor(y, x, color = 'white', content = null) {
     this.y = y;
     this.x = x;
     this.color = color;
