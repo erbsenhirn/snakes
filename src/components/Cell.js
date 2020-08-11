@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { CELL_CLICKED } from '../constants/action-types'
+import { cellClicked } from '../state/State'
 
 
 const mapStateToProps = state => {
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 
 const ConnectedCell = ({ y, x, grid, dispatch }) => {
   let handeClick = () => {
-    dispatch({ type: CELL_CLICKED });
+    dispatch( cellClicked(y, x) );
   }
   
   return (

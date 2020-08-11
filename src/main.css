@@ -1,5 +1,13 @@
 body {
     background-color: black;
+    text-align: center;
+}
+
+.action {
+    font-size: 30px;
+    width: 200px;
+    margin: 10px auto;
+    color: white;
 }
 
 .grid {

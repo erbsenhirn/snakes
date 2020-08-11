@@ -7,6 +7,7 @@ class Snake {
     this.cells = new Array();
     this.addCell(y, x);
     this.direction = new Direction();
+    this.growing = false;
   }
   
   addCell(y, x) {
@@ -29,9 +30,23 @@ class Snake {
     cell.content = null;
   }
   
+  grow() {
+    this.growing = true;
+  }
+  
   move() {
     this.addHeadCell();
-    this.removeTailCell();
+    
+    if (this.growing) {
+      this.growing = false;
+    } else {
+      this.removeTailCell();
+    }
+  }
+  
+  rotate(rotation) {
+    console.log(rotation)
+    this.direction.rotate(rotation);
   }
 }
 

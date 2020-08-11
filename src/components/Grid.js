@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { REFRESH_GRID } from '../constants/action-types'
- 
-
+import { refreshGrid } from '../state/State'
 import Cell from './Cell';
 
 const mapStateToProps = state => {
@@ -12,7 +10,7 @@ const mapStateToProps = state => {
 const ConnectedGrid = ({ grid, dispatch }) => {
   useEffect(() => {
     setInterval(function(){ 
-      dispatch({ type: REFRESH_GRID });
+      dispatch( refreshGrid() );
     }, 500);
   }, []);
   
