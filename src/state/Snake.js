@@ -7,13 +7,13 @@ class Snake {
     this.cells = new Array();
     this.addCell(y, x);
     this.direction = new Direction();
-    this.growing = false;
+    this.growingBy = 0;
   }
   
   addCell(y, x) {
     let cell = this.grid.cells[y][x];
     this.cells.unshift(cell);
-    cell.content = this;
+    cell.addSnake(this);
   }
   
   addHeadCell() {
@@ -26,27 +26,38 @@ class Snake {
   }
   
   removeTailCell() {
-    let cell = this.cells.pop();
-    cell.content = null;
+    if (this.cells.length > 0) {
+      let cell = this.cells.pop();
+      cell.makeEmpty();
+    }
   }
   
   grow() {
-    this.growing = true;
+    this.growingBy += 1;
   }
   
   move() {
-    this.addHeadCell();
+    if (this.cells.length > 0) {
+      this.addHeadCell();
     
-    if (this.growing) {
-      this.growing = false;
-    } else {
-      this.removeTailCell();
+      if (this.growingBy > 0) {
+        this.growingBy -= 1;
+      } else {
+        this.removeTailCell();
+      }
     }
   }
   
   rotate(rotation) {
     console.log(rotation)
     this.direction.rotate(rotation);
+  }
+  
+  die() {
+    for (let cell of this.cells) {
+      cell.makeEmpty();
+    }
+    this.cells = [];
   }
 }
 

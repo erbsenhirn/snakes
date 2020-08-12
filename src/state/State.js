@@ -1,7 +1,7 @@
 import { createStore } from "redux";
 import Grid from './Grid';
 import Snake from './Snake';
-import { ROTATIONS, SNAKE_ACTIONS } from '../constants/constants';
+import { ROTATIONS, SNAKE_ACTIONS, CELL_CONTENT_TYPES } from '../constants/constants';
 import { REFRESH_GRID, CELL_CLICKED } from '../constants/action-types';
 
 const initialState = {
@@ -39,6 +39,10 @@ const getRandomSnakeAction = () => {
   return SNAKE_ACTIONS[keys[Math.floor(keys.length * Math.random())]];
 };
 
+const spawnPickup = (state) => {
+  state.grid.cells[Math.floor(10 * Math.random())][Math.floor(10 * Math.random())].addPickup();
+}
+
 function rootReducer(state = initialState, action) {
   
   switch (action.type) {
@@ -50,25 +54,18 @@ function rootReducer(state = initialState, action) {
       }
 
       snakes = moveSnakes(snakes);
+      spawnPickup(state);
 
+      
       let grid = Object.assign({}, state.grid);
-      
-      for(let y = 0; y < state.grid.height; y++ ) {
-        for(let x = 0; x < state.grid.width; x++ ) {
-          if (grid.cells[y][x].content) {
-            grid.cells[y][x].color = "red";
-          } else {
-            grid.cells[y][x].color = "white";
-          } 
-        }
-      }
-      
+
       return { ...state, snakes: snakes, grid: grid };
 
     case CELL_CLICKED:
-      let clickedSnake = state.grid.cells[action.y][action.x].content;
+      let clickedCell = state.grid.cells[action.y][action.x];
 
-      if (clickedSnake) {
+      if (clickedCell.contentType == CELL_CONTENT_TYPES.SNAKE) {
+        let clickedSnake = clickedCell.content;
         switch (state.currentSnakeAction) {
           case SNAKE_ACTIONS.GROW:
             clickedSnake.grow();
